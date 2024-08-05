@@ -185,6 +185,14 @@ function RepentanceBossChampions:CheckGideon(npc) -- check for Gideon champions
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckGideon, 907)
 
+function RepentanceBossChampions:ReplaceBadGideon(npc) -- check for if the bad dummy gideon champion spawns, and replace it
+	if npc.Variant == 0 and npc.SubType == 1 then
+		npc:Morph(npc.Type, npc.Variant, npc:GetDropRNG():RandomInt(2) + 2, -1) -- if bad gideon spawns then it was always going to be a champion, so we can just replace it with another random gideon champion
+		print("Bad gideon replaced")
+	end
+end
+RepentanceBossChampions:AddCallback(ModCallbacks.MC_POST_NPC_INIT, RepentanceBossChampions.ReplaceBadGideon, 907)
+
 function RepentanceBossChampions:CheckClog(npc) -- check for clog champions
 	local bossColorIdx = npc:GetBossColorIdx()
 	if bossColorIdx == RepentanceBossChampions.BossColorIdx.CLOG_BROWN then
@@ -304,19 +312,21 @@ function RepentanceBossChampions:CheckClutch(npc) -- check for clutch champions
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckClutch, 921)
 
-function RepentanceBossChampions:CheckClicketyClack(type, variant, subType, index, seed) -- clickety clack check for clutch champions
-	for _, clutch in pairs(Isaac.FindByType(921,0,-1)) do -- check for Clutch
-		local bossColorIdx = clutch:ToNPC():GetBossColorIdx()
-		if bossColorIdx == RepentanceBossChampions.BossColorIdx.CLUTCH_ORANGE then
-			print("Morphed clickety clack")
-			return {type, 10, subType}
-		elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.CLUTCH_BLACK then
-			print("Morphed clickety clack")
-			return {type, 20, subType}
+function RepentanceBossChampions:CheckClicketyClack(npc) -- clickety clack check for clutch champions
+	if npc.FrameCount == 0 then
+		for _, clutch in pairs(Isaac.FindByType(921,0,-1)) do -- check for Clutch
+			local bossColorIdx = clutch:ToNPC():GetBossColorIdx()
+			if bossColorIdx == RepentanceBossChampions.BossColorIdx.CLUTCH_ORANGE then
+				npc:Morph(npc.Type, 10, npc.SubType, -1)
+				print("Morphed clickety clack")
+			elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.CLUTCH_BLACK then
+				npc:Morph(npc.Type, 20, npc.SubType, -1)
+				print("Morphed clickety clack")
+			end
 		end
 	end
 end
-RepentanceBossChampions:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, RepentanceBossChampions.CheckClicketyClack, 889)
+RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckClicketyClack, EntityType.ENTITY_CLICKETY_CLACK)
 
 -------------------------------------------------------
 -- Boss death routines
@@ -925,7 +935,6 @@ function RepentanceBossChampions:RedGideonAI(npc)
 		end
 	end
 end
-RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.RedGideonAI, 907)
 
 -------------------------------------------------------
 -- Green Champion Great Gideon
@@ -1032,7 +1041,6 @@ function RepentanceBossChampions:GreenGideonAI(npc)
 		npc.State = 8
 	end
 end
-RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.GreenGideonAI, 907)
 
 -------------------------------------------------------
 -- Black Champion The Pile
