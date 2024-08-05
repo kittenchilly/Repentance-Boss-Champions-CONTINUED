@@ -1,0 +1,31 @@
+<entities anm2root="gfx/" version="5">
+
+	<entity anm2path="cursed death head_red.anm2" baseHP="40" boss="0" champion="0" collisionDamage="1" collisionMass="20" collisionRadius="13" friction="1" gridCollision="walls" id="212" name="Siren's Cursed Death's Head" numGridCollisionPoints="12" portrait="227" shadowSize="17" shutdoors="false" stageHP="0" tags="noreroll" variant="2" subtype="32">
+        <gibs amount="8" blood="1" bone="1" eye="0" gut="0" large="0"/>
+    </entity>
+	
+    <entity anm2path="willo_purple.anm2" baseHP="6" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="17" friction="1" gridCollision="none" id="808" name="Purple Willo" numGridCollisionPoints="0" portrait="210" shadowSize="10" stageHP="0" tags="fly" variant="32">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+    </entity>
+	
+    <entity anm2path="gideon_red.anm2" baseHP="6" boss="1" bossID="83" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="48" friction="1" id="907" name="Great Gideon (red)" numGridCollisionPoints="0" portrait="110" shadowSize="64" stageHP="0" tags="nodelirium" variant="10">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+    </entity>
+	
+    <entity anm2path="gideon_green.anm2" baseHP="6" boss="1" bossID="83" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="48" friction="1" id="907" name="Great Gideon (green)" numGridCollisionPoints="0" portrait="110" shadowSize="64" stageHP="0" tags="nodelirium" variant="20">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+    </entity>
+
+	<entity anm2path="clickety clack_orange.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="889" name="Clickety Clack (orange)" numGridCollisionPoints="12" portrait="339" reroll="true" shadowSize="14" stageHP="3" variant="10">
+        <gibs amount="10" blood="0" bone="1" dust="1" eye="0" gut="0" large="0" sound_bone="1"/>
+        <preload id="9" variant="1"/>
+        <preload-snd id="249"/>
+    </entity>
+	
+	<entity anm2path="clickety clack_black.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="889" name="Clickety Clack (black)" numGridCollisionPoints="12" portrait="339" reroll="true" shadowSize="14" stageHP="3" variant="20">
+        <gibs amount="10" blood="0" bone="1" dust="1" eye="0" gut="0" large="0" sound_bone="1"/>
+        <preload id="9" variant="1"/>
+        <preload-snd id="249"/>
+    </entity>
+	
+</entities>

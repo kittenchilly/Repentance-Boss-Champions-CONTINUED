@@ -1,0 +1,100 @@
+<bosscolors version="1" anm2root="gfx/" portraitroot="gfx/ui/boss/">
+	<!-- Tuff Twins -->
+    <boss id="19" variant="2">
+		<color name="Tuff Twins Black" suffix="_black" hp="1.1"/> <!-- 20% slower -->
+		<color name="Tuff Twins Purple" suffix="_purple" />
+	</boss>
+	<!-- The Shell -->
+    <boss id="19" variant="3">
+		<color name="The Shell Red" suffix="_red" hp="1.2"/>
+	</boss>
+	<!-- The Pile -->
+    <boss id="269" variant="1">
+		<color name="The Pile Black" suffix="_black" hp="1.15"/>
+		<color name="The Pile Pink" anm2path="polycephalus2_pink.anm2" scale="0.85"/>
+	</boss>
+	<!-- Reap Creep -->
+    <boss id="900" variant="0">
+		<color name="Reap Creep White" suffix="_white" />
+		<color name="Reap Creep Red" suffix="_red" />
+	</boss>
+	<!-- Lil Blub -->
+    <boss id="901" variant="0">
+		<color name="Lil Blub Blue" suffix="_blue" hp="1.2" />
+		<color name="Lil Blub Green" suffix="_green" />
+	</boss>
+	<!-- The Rainmaker -->
+    <boss id="902" variant="0">
+		<color name="The Rainmaker Blue" suffix="_blue" hp="1.15" scale="1.1" />
+	</boss>
+	<!-- The Siren -->
+    <boss id="904" variant="0">
+		<color name="The Siren Black" anm2path="siren_black.anm2" hp="0.8" />
+		<color name="The Siren Purple" suffix="_purple" />
+	</boss>
+	<!-- The Heretic -->
+    <boss id="905" variant="0">
+		<color name="The Heretic Red" anm2path="heretic_red.anm2" />
+		<color name="The Heretic Purple" anm2path="heretic_purple.anm2" />
+	</boss>
+	<!-- Hornfel -->
+    <boss id="906" variant="0">
+		<color name="Hornfel Black" anm2path="hornfel_black.anm2" />
+		<color name="Hornfel Orange" anm2path="hornfel_orange.anm2" />
+	</boss>
+	<!-- Great Gideon
+    <boss id="907" variant="0">
+		<color name="Great Gideon Red" suffix="_red" /> DUMMY, REROLL ON LOAD
+		<color name="Great Gideon Red" suffix="_red" />
+		<color name="Great Gideon Green" suffix="_green" />
+	</boss> -->
+	<!-- Baby Plum -->
+    <boss id="908" variant="0">
+		<color name="Baby Plum Grey" suffix="_grey" hp="1.15"/>
+		<color name="Baby Plum Yellow" suffix="_yellow" scale="0.85" />
+	</boss>
+	<!-- Min-Min -->
+    <boss id="913" variant="0">
+		<color name="Min-Min Purple" suffix="_purple" hp="0.8" />
+		<color name="Min-Min Red" suffix="_red" hp="1.2" />
+	</boss>
+	<!-- Clog -->
+    <boss id="914" variant="0">
+		<color name="Clog Brown" anm2path="clog_brown.anm2" hp="1.2"/>
+		<color name="Clog Black" suffix="_black" />
+	</boss>
+	<!-- Singe -->
+    <boss id="915" variant="0">
+		<color name="Singe Brown" suffix="_brown" hp="1.1"/>
+		<color name="Singe Green" suffix="_green" /> <!-- 20% slower -->
+	</boss>
+	<!-- Bumbino -->
+    <boss id="916" variant="0">
+		<color name="Bumbino Grey" suffix="_grey" hp="1.15" />
+		<color name="Bumbino Green" suffix="_green" />
+	</boss>
+	<!-- Colostomia -->
+    <boss id="917" variant="0">
+		<color name="Colostomia Red" suffix="_red" />
+		<color name="Colostomia Yellow" anm2path="colostomia_yellow.anm2" />
+	</boss>
+	<!-- Turdlet -->
+    <boss id="918" variant="0">
+		<color name="Turdlet Blue" suffix="_blue" hp="1.2" />
+		<color name="Turdlet Black" suffix="_black" />
+	</boss>
+	<!-- The Horny Boys -->
+    <boss id="920" variant="0">
+		<color name="The Horny Boys Pink" suffix="_pink" scale="0.85" />
+		<color name="The Horny Boys Green" anm2path="horny boys_green.anm2" hp="1.15" scale="1.15" />
+	</boss>
+	<!-- Clutch -->
+    <boss id="921" variant="0">
+		<color name="Clutch Orange" anm2path="clutch_orange.anm2"/>
+		<color name="Clutch Black" anm2path="clutch_black.anm2"/>/>
+	</boss>
+	<boss id="889" variant="0">
+		<color name="Clickety Clack Orange" suffix="_orange"/>
+		<color name="Clickety Clack Black" suffix="_black"/>
+	</boss>
+</bosscolors>
