@@ -8,14 +8,6 @@
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
     </entity>
 	
-    <entity anm2path="gideon_red.anm2" baseHP="6" boss="1" bossID="83" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="48" friction="1" id="907" name="Great Gideon (red)" numGridCollisionPoints="0" portrait="110" shadowSize="64" stageHP="0" tags="nodelirium" variant="10">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
-    </entity>
-	
-    <entity anm2path="gideon_green.anm2" baseHP="6" boss="1" bossID="83" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="48" friction="1" id="907" name="Great Gideon (green)" numGridCollisionPoints="0" portrait="110" shadowSize="64" stageHP="0" tags="nodelirium" variant="20">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
-    </entity>
-
 	<entity anm2path="clickety clack_orange.anm2" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="14" collisionRadius="13" friction="1" id="889" name="Clickety Clack (orange)" numGridCollisionPoints="12" portrait="339" reroll="true" shadowSize="14" stageHP="3" variant="10">
         <gibs amount="10" blood="0" bone="1" dust="1" eye="0" gut="0" large="0" sound_bone="1"/>
         <preload id="9" variant="1"/>

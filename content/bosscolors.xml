@@ -42,12 +42,12 @@
 		<color name="Hornfel Black" anm2path="hornfel_black.anm2" />
 		<color name="Hornfel Orange" anm2path="hornfel_orange.anm2" />
 	</boss>
-	<!-- Great Gideon
+	<!-- Great Gideon -->
     <boss id="907" variant="0">
-		<color name="Great Gideon Red" suffix="_red" /> DUMMY, REROLL ON LOAD
+		<color name="Great Gideon (defeated)" /> <!-- Dummy, replace if spawned -->
 		<color name="Great Gideon Red" suffix="_red" />
 		<color name="Great Gideon Green" suffix="_green" />
-	</boss> -->
+	</boss>
 	<!-- Baby Plum -->
     <boss id="908" variant="0">
 		<color name="Baby Plum Grey" suffix="_grey" hp="1.15"/>
@@ -92,9 +92,5 @@
     <boss id="921" variant="0">
 		<color name="Clutch Orange" anm2path="clutch_orange.anm2"/>
 		<color name="Clutch Black" anm2path="clutch_black.anm2"/>/>
-	</boss>
-	<boss id="889" variant="0">
-		<color name="Clickety Clack Orange" suffix="_orange"/>
-		<color name="Clickety Clack Black" suffix="_black"/>
 	</boss>
 </bosscolors>

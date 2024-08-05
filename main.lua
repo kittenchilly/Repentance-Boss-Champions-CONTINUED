@@ -11,6 +11,7 @@ RepentanceBossChampions.BossColorIdx = {
     TUFF_TWINS_BLACK = Isaac.GetBossColorIdxByName("Tuff Twins Black"),
     TUFF_TWINS_PURPLE = Isaac.GetBossColorIdxByName("Tuff Twins Purple"),
     THE_SHELL_RED = Isaac.GetBossColorIdxByName("The Shell Red"),
+	-- Shell Champion 2
     THE_PILE_BLACK = Isaac.GetBossColorIdxByName("The Pile Black"),
     THE_PILE_PINK = Isaac.GetBossColorIdxByName("The Pile Pink"),
     REAP_CREEP_WHITE = Isaac.GetBossColorIdxByName("Reap Creep White"),
@@ -18,14 +19,15 @@ RepentanceBossChampions.BossColorIdx = {
     LIL_BLUB_BLUE = Isaac.GetBossColorIdxByName("Lil Blub Blue"),
     LIL_BLUB_GREEN = Isaac.GetBossColorIdxByName("Lil Blub Green"),
     THE_RAINMAKER_BLUE = Isaac.GetBossColorIdxByName("The Rainmaker Blue"),
+	-- Rainmaker Champion 2
     THE_SIREN_BLACK = Isaac.GetBossColorIdxByName("The Siren Black"),
     THE_SIREN_PURPLE = Isaac.GetBossColorIdxByName("The Siren Purple"),
     THE_HERETIC_RED = Isaac.GetBossColorIdxByName("The Heretic Red"),
     THE_HERETIC_PURPLE = Isaac.GetBossColorIdxByName("The Heretic Purple"),
     HORNFEL_BLACK = Isaac.GetBossColorIdxByName("Hornfel Black"),
     HORNFEL_ORANGE = Isaac.GetBossColorIdxByName("Hornfel Orange"),
-    --GREAT_GIDEON_RED = Isaac.GetBossColorIdxByName("Great Gideon Red"),
-    --GREAT_GIDEON_GREEN = Isaac.GetBossColorIdxByName("Great Gideon Green"),
+    GREAT_GIDEON_RED = Isaac.GetBossColorIdxByName("Great Gideon Red"),
+    GREAT_GIDEON_GREEN = Isaac.GetBossColorIdxByName("Great Gideon Green"),
     BABY_PLUM_GREY = Isaac.GetBossColorIdxByName("Baby Plum Grey"),
     BABY_PLUM_YELLOW = Isaac.GetBossColorIdxByName("Baby Plum Yellow"),
     MIN_MIN_PURPLE = Isaac.GetBossColorIdxByName("Min-Min Purple"),
@@ -36,7 +38,14 @@ RepentanceBossChampions.BossColorIdx = {
     SINGE_GREEN = Isaac.GetBossColorIdxByName("Singe Green"),
     BUMBINO_GREY = Isaac.GetBossColorIdxByName("Bumbino Grey"),
     BUMBINO_GREEN = Isaac.GetBossColorIdxByName("Bumbino Green"),
-
+    COLOSTOMIA_RED = Isaac.GetBossColorIdxByName("Colostomia Red"),
+    COLOSTOMIA_YELLOW = Isaac.GetBossColorIdxByName("Colostomia Yellow"),
+    TURDLET_BLUE = Isaac.GetBossColorIdxByName("Turdlet Blue"),
+    TURDLET_BLACK = Isaac.GetBossColorIdxByName("Turdlet Black"),
+    THE_HORNY_BOYS_PINK = Isaac.GetBossColorIdxByName("The Horny Boys Pink"),
+    THE_HORNY_BOYS_GREEN = Isaac.GetBossColorIdxByName("The Horny Boys Green"),
+    CLUTCH_ORANGE = Isaac.GetBossColorIdxByName("Clutch Orange"),
+    CLUTCH_BLACK = Isaac.GetBossColorIdxByName("Clutch Black"),
 }
 
 --Enhanced Boss Bars
@@ -77,11 +86,11 @@ end
 -- Check for Champions
 -------------------------------------------------------
 function RepentanceBossChampions:CheckTuffTwins(npc) -- check for tuff twins champions
-	local subtype = npc.SubType
+	local bossColorIdx = npc:GetBossColorIdx()
 	if npc.Variant == 2 then
-		if subtype == 1 then
+		if bossColorIdx == RepentanceBossChampions.BossColorIdx.TUFF_TWINS_BLACK then
 			RepentanceBossChampions:BlackTuffTwinsAI(npc)
-		elseif subtype == 2 then
+		elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.TUFF_TWINS_PURPLE then
 			RepentanceBossChampions:PurpleTuffTwinsAI(npc)
 		end
 	end
@@ -89,9 +98,9 @@ end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckTuffTwins, 19)
 
 function RepentanceBossChampions:CheckShell(npc) -- check for the shell champions
-	local subtype = npc.SubType
+	local bossColorIdx = npc:GetBossColorIdx()
 	if npc.Variant == 3 then
-		if subtype == 1 then
+		if bossColorIdx == RepentanceBossChampions.BossColorIdx.THE_SHELL_RED then
 			RepentanceBossChampions:RedShellAI(npc)
 		end
 	end
@@ -99,12 +108,11 @@ end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckShell, 19)
 
 function RepentanceBossChampions:CheckPile(npc) -- check for pile champions
-	local subtype = npc.SubType
-	local sprite = npc:GetSprite()
+	local bossColorIdx = npc:GetBossColorIdx()
 	if npc.Variant == 1 then
-		if subtype == 1 then
+		if bossColorIdx == RepentanceBossChampions.BossColorIdx.THE_PILE_BLACK then
 			RepentanceBossChampions:BlackPileAI(npc)
-		elseif subtype == 2 then
+		elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.THE_PILE_PINK then
 			RepentanceBossChampions:PinkPileAI(npc)
 		end
 	end
@@ -112,243 +120,210 @@ end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckPile, 269)
 
 function RepentanceBossChampions:CheckReapCreep(npc) -- check for reap creep champions
-	local subtype = npc.SubType
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.REAP_CREEP_WHITE then
 		RepentanceBossChampions:WhiteReapCreepAI(npc)
-	elseif subtype == 2 then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.REAP_CREEP_RED then
 		RepentanceBossChampions:RedReapCreepAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckReapCreep, 900)
 
 function RepentanceBossChampions:CheckLilBlub(npc) -- check for lil blub champions
-	local subtype = npc.SubType
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.LIL_BLUB_BLUE then
 		RepentanceBossChampions:BlueLilBlubAI(npc)
-	elseif subtype == 2 then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.LIL_BLUB_GREEN then
 		RepentanceBossChampions:GreenLilBlubAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckLilBlub, 901)
 
 function RepentanceBossChampions:CheckRainmaker(npc) -- check for rainmaker champions
-	local subtype = npc.SubType
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.THE_RAINMAKER_BLUE then
 		RepentanceBossChampions:BlueRainmakerAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckRainmaker, 902)
 
 function RepentanceBossChampions:CheckSiren(npc) -- check for siren champions
-	local subtype = npc.SubType
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.THE_SIREN_BLACK then
 		RepentanceBossChampions:BlackSirenAI(npc)
-	elseif subtype == 2 then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.THE_SIREN_PURPLE then
 		RepentanceBossChampions:PurpleSirenAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckSiren, 904)
 
 function RepentanceBossChampions:SetSirenData(npc) -- set data for siren
-	local subtype = npc.SubType
-	local sprite = npc:GetSprite()
-	if subtype == 2 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.THE_SIREN_PURPLE then
 		npc:GetData().FearTimer = 0
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_POST_NPC_INIT, RepentanceBossChampions.SetSirenData, 904)
 
 function RepentanceBossChampions:CheckHeretic(npc) -- check for Heretic champions
-	local subtype = npc.SubType
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.THE_HERETIC_RED then
 		RepentanceBossChampions:RedHereticAI(npc)
-	elseif subtype == 2 then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.THE_HERETIC_PURPLE then
 		RepentanceBossChampions:PurpleHereticAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckHeretic, 905)
 
---[[
-
 function RepentanceBossChampions:CheckGideon(npc) -- check for Gideon champions
-	local subtype = npc.SubType
-	if subtype == 2 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.GREAT_GIDEON_RED then
 		RepentanceBossChampions:RedGideonAI(npc)
-	elseif subtype == 3 then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.GREAT_GIDEON_GREEN then
 		RepentanceBossChampions:GreenGideonAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckGideon, 907)
 
-function RepentanceBossChampions:RollGideonChance(npc) -- roll for gideon champs on init
-	local data = npc:GetData()
-	local sprite = npc:GetSprite()
-	if sprite:IsPlaying("Appear") then
-		if sprite:GetFrame() == 1 then
-			data.Roll = math.random(0,5)
-			print(data.Roll)
-			if data.Roll == 4 then
-				RepentanceBossChampions:RedGideonAI(npc)
-			elseif data.Roll == 5 then
-				RepentanceBossChampions:GreenGideonAI(npc)
-			end
-		end
+function RepentanceBossChampions:CheckClog(npc) -- check for clog champions
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.CLOG_BROWN then
+		RepentanceBossChampions:BrownClogAI(npc)
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.CLOG_BLACK then
+		RepentanceBossChampions:BlackClogAI(npc)
 	end
 end
-RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.RollGideonChance, 907)
-
-function RepentanceBossChampions:SetRedGideon(npc) -- use red gideon ai
-	RepentanceBossChampions:RedGideonAI(npc)
-end
-
-function RepentanceBossChampions:SetGreenGideon(npc) -- use green gideon ai
-	RepentanceBossChampions:GreenGideonAI(npc)
-end
-
-]]
+RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckClog, 914)
 
 function RepentanceBossChampions:SetClogData(npc) -- set data for clog
-	local subtype = npc.SubType
-	local sprite = npc:GetSprite()
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.CLOG_BROWN then
 		npc:GetData().ShotCounter = 0
 		npc:GetData().ShotAngle = 0
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_POST_NPC_INIT, RepentanceBossChampions.SetClogData, 914)
 
-function RepentanceBossChampions:CheckClog(npc) -- check for clog champions
-	local subtype = npc.SubType
-	if subtype == 1 then
-		RepentanceBossChampions:BrownClogAI(npc)
-	elseif subtype == 2 then
-		RepentanceBossChampions:BlackClogAI(npc)
-	end
-end
-RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckClog, 914)
-
 function RepentanceBossChampions:CheckSinge(npc) -- check for singe champions
-	local subtype = npc.SubType
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.SINGE_BROWN then
 		RepentanceBossChampions:BrownSingeAI(npc)
-	elseif subtype == 2 then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.SINGE_GREEN then
 		RepentanceBossChampions:GreenSingeAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckSinge, 915)
 
 function RepentanceBossChampions:CheckHornfel(npc) -- check for hornfel champions
-	local subtype = npc.SubType
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.HORNFEL_BLACK then
 		RepentanceBossChampions:BlackHornfelAI(npc)
-	elseif subtype == 2 then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.HORNFEL_ORANGE then
 		RepentanceBossChampions:OrangeHornfelAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckHornfel, 906)
 
 function RepentanceBossChampions:CheckPlum(npc) -- check for plum champions
-	local subtype = npc.SubType
-	if subtype == greyPlumSubType then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.BABY_PLUM_GREY then
 		RepentanceBossChampions:GreyPlumAI(npc)
-	elseif subtype == yellowPlumSubType then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.BABY_PLUM_YELLOW then
 		RepentanceBossChampions:YellowPlumAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckPlum, 908)
 
 function RepentanceBossChampions:CheckMinMin(npc) -- check for min-min champions
-	local subtype = npc.SubType
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.MIN_MIN_PURPLE then
 		RepentanceBossChampions:PurpleMinMinAI(npc)
-	elseif subtype == 2 then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.MIN_MIN_RED then
 		RepentanceBossChampions:RedMinMinAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckMinMin, 913)
 
 function RepentanceBossChampions:CheckBumbino(npc) -- check for bumbino champions
-	local subtype = npc.SubType
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.BUMBINO_GREY then
 		RepentanceBossChampions:GreyBumbinoAI(npc)
-	elseif subtype == 2 then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.BUMBINO_GREEN then
 		RepentanceBossChampions:GreenBumbinoAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckBumbino, 916)
 
 function RepentanceBossChampions:CheckColostomia(npc) -- check for colostomia champions
-	local subtype = npc.SubType
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.COLOSTOMIA_RED then
 		RepentanceBossChampions:RedColostomiaAI(npc)
-	elseif subtype == 2 then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.COLOSTOMIA_YELLOW then
 		RepentanceBossChampions:YellowColostomiaAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckColostomia, 917)
 
 function RepentanceBossChampions:CheckTurdlet(npc) -- check for turdlet champions
-	local subtype = npc.SubType
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.TURDLET_BLUE then
 		RepentanceBossChampions:BlueTurdletAI(npc)
-	elseif subtype == 2 then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.TURDLET_BLACK then
 		RepentanceBossChampions:BlackTurdletAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckTurdlet, 918)
 
 function RepentanceBossChampions:SetTurdletTimer(npc) -- set timer for blue turdlet on init
-	local subtype = npc.SubType
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.TURDLET_BLUE then
 		npc:GetData().FlyTimer = math.random(0,500)
-	elseif subtype == 2 then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.TURDLET_BLACK then
 		npc:GetData().ShotTimer = 10
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_POST_NPC_INIT, RepentanceBossChampions.SetTurdletTimer, 918)
 
 function RepentanceBossChampions:CheckHornyBoys(npc) -- check for horny boys champions
-	local subtype = npc.SubType
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.THE_HORNY_BOYS_PINK then
 		RepentanceBossChampions:PinkHornyBoysAI(npc)
-	elseif subtype == 2 then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.THE_HORNY_BOYS_GREEN then
 		RepentanceBossChampions:GreenHornyBoysAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckHornyBoys, 920)
 
 function RepentanceBossChampions:CheckClutch(npc) -- check for clutch champions
-	local subtype = npc.SubType
-	if subtype == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.CLUTCH_ORANGE then
 		RepentanceBossChampions:OrangeClutchAI(npc)
-	elseif subtype == 2 then
+	elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.CLUTCH_BLACK then
 		RepentanceBossChampions:BlackClutchAI(npc)
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckClutch, 921)
 
-function RepentanceBossChampions:CheckClicketyClack(npc) -- clickety clack check for clutch champions
+function RepentanceBossChampions:CheckClicketyClack(type, variant, subType, index, seed) -- clickety clack check for clutch champions
 	for _, clutch in pairs(Isaac.FindByType(921,0,-1)) do -- check for Clutch
-		if clutch.SubType == 1 then
-			for _, clicketyclack in pairs(Isaac.FindByType(889,0,-1)) do --  morph clickety clacks to orange
-				clicketyclack:ToNPC():Morph(889, 10, 0, -1)
-				print("Morphed clickety clack")
-			end
-		elseif clutch.SubType == 2 then
-			for _, clicketyclack in pairs(Isaac.FindByType(889,0,-1)) do --  morph clickety clacks to black
-				clicketyclack:ToNPC():Morph(889, 20, 0, -1)
-				print("Morphed clickety clack")
-			end
+		local bossColorIdx = clutch:ToNPC():GetBossColorIdx()
+		if bossColorIdx == RepentanceBossChampions.BossColorIdx.CLUTCH_ORANGE then
+			print("Morphed clickety clack")
+			return {type, 10, subType}
+		elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.CLUTCH_BLACK then
+			print("Morphed clickety clack")
+			return {type, 20, subType}
 		end
 	end
 end
-RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.CheckClicketyClack, 889)
+RepentanceBossChampions:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, RepentanceBossChampions.CheckClicketyClack, 889)
 
 -------------------------------------------------------
 -- Boss death routines
 -------------------------------------------------------
 function RepentanceBossChampions:PlumDeath(npc)
-	if npc.SubType == greyPlumSubType then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.BABY_PLUM_GREY then
 		for _, splatter in pairs(Isaac.FindByType(1000,77,-1)) do -- remove the blood splatter
 			if splatter.SpawnerType == EntityType.ENTITY_BABY_PLUM then
 				splatter:Remove()
@@ -356,7 +331,7 @@ function RepentanceBossChampions:PlumDeath(npc)
 		end
 		Isaac.Explode(npc.Position, npc, 1.5)
 	end
-	if npc.SubType == yellowPlumSubType then
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.BABY_PLUM_YELLOW then
 		for _, redProj in pairs(Isaac.FindByType(EntityType.ENTITY_PROJECTILE,-1,-1)) do -- recolor the blood shots
 			if redProj.SpawnerType == EntityType.ENTITY_BABY_PLUM then
 				local piss = Color(1,1,1,1,0,0,0)
@@ -369,15 +344,15 @@ end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, RepentanceBossChampions.PlumDeath, 908)
 
 function RepentanceBossChampions:LilBlubDeath(npc)
-	local room = game:GetRoom()
-	if npc.SubType == 1 or npc.SubType == 2 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.LIL_BLUB_BLUE or bossColorIdx == RepentanceBossChampions.BossColorIdx.LIL_BLUB_GREEN then
 		for _, smallLeech in pairs(Isaac.FindByType(EntityType.ENTITY_SMALL_LEECH,-1,-1)) do -- remove small leeches
 			if smallLeech.SpawnerType == EntityType.ENTITY_LIL_BLUB then
 				smallLeech:Remove()
 			end
 		end
 	end
-	if npc.SubType == 1 then
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.LIL_BLUB_BLUE then
 		for i = 1, math.random(3,5) do
 			local velocity = Vector(RepentanceBossChampions.choose(math.random(-7, -3), math.random(3, 7)), RepentanceBossChampions.choose(math.random(-7, -3), math.random(3, 7))):Rotated(math.random(-30*i, 30*i)) * 12
 			local spider = EntityNPC.ThrowSpider(npc.Position, npc, npc.Position+velocity, false, 1.0)
@@ -388,8 +363,9 @@ end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, RepentanceBossChampions.LilBlubDeath, 901)
 
 function RepentanceBossChampions:BumbinoDeath(npc)
+	local bossColorIdx = npc:GetBossColorIdx()
 	local data = npc:GetData()
-	if npc.SubType == 2 then
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.BUMBINO_GREEN then
 		for i=1, math.random(6, 9) do
 			data.FlyType = RepentanceBossChampions.choose(18,18,80,256,256,868)
 			local fly = Game():Spawn(data.FlyType, 0, npc.Position, Vector.FromAngle(math.random(0, 360)):Resized(1), npc, 0, 1):ToNPC()
@@ -400,15 +376,16 @@ end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, RepentanceBossChampions.BumbinoDeath, 916)
 
 function RepentanceBossChampions:ClutchDeath(npc)
+	local bossColorIdx = npc:GetBossColorIdx()
 	local OrangeColor = Color(1,1,1,0.5,0,0,0)
 	OrangeColor:SetColorize(3, 1.5, 0, 1)
 	local BlackColor = Color(0,0,0,0.5,0,0,0)
 	BlackColor:SetColorize(0.25,0.25, 0.25, 1)
 	for _, ghost in pairs(Isaac.FindByType(1000,144,3)) do
-		if npc.SubType == 1 then
+		if bossColorIdx == RepentanceBossChampions.BossColorIdx.CLUTCH_ORANGE then
 			ghost.SubType = 1
 			ghost.Color = Color(1,0,0,0.5,0,0,0)
-		elseif npc.SubType == 2 then
+		elseif bossColorIdx == RepentanceBossChampions.BossColorIdx.CLUTCH_BLACK then
 			ghost.SubType = 2
 			ghost.Color = BlackColor
 		end
@@ -417,7 +394,8 @@ end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, RepentanceBossChampions.ClutchDeath, 921)
 
 function RepentanceBossChampions:HereticDeath(npc)
-	if npc.SubType == 1 then
+	local bossColorIdx = npc:GetBossColorIdx()
+	if bossColorIdx == RepentanceBossChampions.BossColorIdx.THE_HERETIC_RED then
 		for _, ent in pairs(Isaac.FindByType(EntityType.ENTITY_EFFECT,147,1)) do
 			ent:GetSprite().Color = Color(1,0,0,1,0,0,0)
 		end
@@ -612,7 +590,8 @@ RepentanceBossChampions:AddCallback(ModCallbacks.MC_PRE_PROJECTILE_COLLISION, Re
 function RepentanceBossChampions:CheckPurpleFire(npc)
 	if npc.Variant ~= 3 then return end
 	for _, heretic in pairs(Isaac.FindByType(905,0,-1)) do -- check for heretic
-		if heretic.SubType == 2 then
+		local bossColorIdx = heretic:ToNPC():GetBossColorIdx()
+		if bossColorIdx == RepentanceBossChampions.BossColorIdx.THE_HERETIC_PURPLE then
 			RepentanceBossChampions:PurpleFireHereticAI(npc)
 		end
 	end
@@ -860,91 +839,89 @@ function RepentanceBossChampions:RedGideonAI(npc)
 	local sprite = npc:GetSprite()
 	local target = npc:GetPlayerTarget()
 	local room = game:GetRoom()
-	if npc.Variant == 10 then
-		if room:IsClear() then
-			for _, gideon in pairs(Isaac.FindByType(907,10,1)) do -- remove
-				if gideon:GetSprite():IsPlaying("ClosedEyes") then
-					gideon:ToNPC():Morph(907, 0, 1, -1)
+	if room:IsClear() then
+		for _, gideon in pairs(Isaac.FindByType(907,10,1)) do -- remove
+			if gideon:GetSprite():IsPlaying("ClosedEyes") then
+				gideon:ToNPC():Morph(907, 0, 1, -1)
+			end
+		end
+	end
+	if data.Timer == nil then
+		data.Timer = 2
+	end
+	if npc.State == 6 or npc.State == 3 then -- fire barrage attack OR idle
+		for _, fireProj in pairs(Isaac.FindByType(EntityType.ENTITY_PROJECTILE,0,-1)) do -- remove
+			if fireProj.SpawnerType == 907 then
+				local projdata = fireProj:GetData()
+				if not projdata.New == true then
+					fireProj:Remove()
 				end
 			end
 		end
-		if data.Timer == nil then
-			data.Timer = 2
-		end
-		if npc.State == 6 or npc.State == 3 then -- fire barrage attack OR idle
-			for _, fireProj in pairs(Isaac.FindByType(EntityType.ENTITY_PROJECTILE,0,-1)) do -- remove
-				if fireProj.SpawnerType == 907 then
-					local projdata = fireProj:GetData()
-					if not projdata.New == true then
-						fireProj:Remove()
-					end
-				end
-			end
-			if sprite:IsPlaying("Attack2Loop") then
-				data.Timer = data.Timer + 1
-				data.Angle = 180
-				if data.Timer >= 4 then
-					npc:PlaySound(SoundEffect.SOUND_BLOODSHOOT, 1, 0, false, 1)
-					data.Angle = data.Angle + 180
-					for i = 1, 2 do
-						local velocity = Vector.FromAngle(data.Angle+i*180):Resized(7)
-						local proj = Isaac.Spawn(9, 0, 0, Vector(npc.Position.X, npc.Position.Y + math.random(30,530)), velocity, npc):ToProjectile()
-						local projdata = proj:GetData()
-						proj.Scale = RepentanceBossChampions.choose(1,1.25,1.5)
-						proj.FallingSpeed = 0
-						proj.FallingAccel = -0.05
-						proj.Color = Color(1,1,1,1,0.35,0,0)
-						projdata.New = true
-						data.Timer = 0
-						local Splat = Isaac.Spawn(1000,2,2, Vector(proj.Position.X, proj.Position.Y), Vector(0,0), proj)
-						Splat.DepthOffset = 200
-						Splat.Color = Color(1.5,1.5,1.5,0.75,0,0,0)
-					end
-				end
-			end
-		end
-		if npc.State == 8 then -- projectile spread attack
-			for _, proj in pairs(Isaac.FindByType(EntityType.ENTITY_PROJECTILE,0,-1)) do -- remove
-				if proj.SpawnerType == 907 then
+		if sprite:IsPlaying("Attack2Loop") then
+			data.Timer = data.Timer + 1
+			data.Angle = 180
+			if data.Timer >= 4 then
+				npc:PlaySound(SoundEffect.SOUND_BLOODSHOOT, 1, 0, false, 1)
+				data.Angle = data.Angle + 180
+				for i = 1, 2 do
+					local velocity = Vector.FromAngle(data.Angle+i*180):Resized(7)
+					local proj = Isaac.Spawn(9, 0, 0, Vector(npc.Position.X, npc.Position.Y + math.random(30,530)), velocity, npc):ToProjectile()
 					local projdata = proj:GetData()
-					if not projdata.New == true then
-						proj:Remove()
-					end
-				end
-			end
-			if sprite:IsEventTriggered("Shoot") then
-				for i = 1, 3 do
-					local velocity = ((target.Position - npc.Position):Rotated(math.random(-1, 1)) * 0.025 * 12 * 0.1):Rotated(math.random(-50,50))
-					local length = velocity:Length()
-					if length > 12 then
-						velocity = (velocity / length) * 12
-					end
-					local proj = Isaac.Spawn(9, 0, 0, npc.Position, velocity, npc):ToProjectile()
-					local projdata = proj:GetData()
-					proj.FallingAccel = 0.8
-					proj.FallingSpeed = math.random(-24, -16)
-					proj.Scale = 2.5
+					proj.Scale = RepentanceBossChampions.choose(1,1.25,1.5)
+					proj.FallingSpeed = 0
+					proj.FallingAccel = -0.05
+					proj.Color = Color(1,1,1,1,0.35,0,0)
 					projdata.New = true
-					projdata.Haemolacria = true
-					projdata.HaemolacriaBig = true
+					data.Timer = 0
+					local Splat = Isaac.Spawn(1000,2,2, Vector(proj.Position.X, proj.Position.Y), Vector(0,0), proj)
+					Splat.DepthOffset = 200
+					Splat.Color = Color(1.5,1.5,1.5,0.75,0,0,0)
 				end
 			end
 		end
-		if npc.State == 9 then -- fire barrage prep
-			if sprite:GetFrame() == 1 then
-				data.Angle = 180
-				local tracer = Isaac.Spawn(1000, EffectVariant.GENERIC_TRACER, 0, npc.Position, Vector(0,0), npc):ToEffect()
-				tracer.LifeSpan = 45
-				tracer.Timeout = 45
-				tracer.TargetPosition = Vector(0,1)
-				local tracerColor = Color(2,0.3,0.3,0.2)
-				tracer:SetColor(tracerColor, 110, 1, false, false)
-				tracer.SpriteScale = Vector(4,6)
+	end
+	if npc.State == 8 then -- projectile spread attack
+		for _, proj in pairs(Isaac.FindByType(EntityType.ENTITY_PROJECTILE,0,-1)) do -- remove
+			if proj.SpawnerType == 907 then
+				local projdata = proj:GetData()
+				if not projdata.New == true then
+					proj:Remove()
+				end
 			end
-			if sprite:GetFrame() == 50 then
-				local brimstone = EntityLaser.ShootAngle(11, npc.Position, 90, 55, Vector(0,-30), npc)
-				brimstone.DepthOffset = 200
+		end
+		if sprite:IsEventTriggered("Shoot") then
+			for i = 1, 3 do
+				local velocity = ((target.Position - npc.Position):Rotated(math.random(-1, 1)) * 0.025 * 12 * 0.1):Rotated(math.random(-50,50))
+				local length = velocity:Length()
+				if length > 12 then
+					velocity = (velocity / length) * 12
+				end
+				local proj = Isaac.Spawn(9, 0, 0, npc.Position, velocity, npc):ToProjectile()
+				local projdata = proj:GetData()
+				proj.FallingAccel = 0.8
+				proj.FallingSpeed = math.random(-24, -16)
+				proj.Scale = 2.5
+				projdata.New = true
+				projdata.Haemolacria = true
+				projdata.HaemolacriaBig = true
 			end
+		end
+	end
+	if npc.State == 9 then -- fire barrage prep
+		if sprite:GetFrame() == 1 then
+			data.Angle = 180
+			local tracer = Isaac.Spawn(1000, EffectVariant.GENERIC_TRACER, 0, npc.Position, Vector(0,0), npc):ToEffect()
+			tracer.LifeSpan = 45
+			tracer.Timeout = 45
+			tracer.TargetPosition = Vector(0,1)
+			local tracerColor = Color(2,0.3,0.3,0.2)
+			tracer:SetColor(tracerColor, 110, 1, false, false)
+			tracer.SpriteScale = Vector(4,6)
+		end
+		if sprite:GetFrame() == 50 then
+			local brimstone = EntityLaser.ShootAngle(11, npc.Position, 90, 55, Vector(0,-30), npc)
+			brimstone.DepthOffset = 200
 		end
 	end
 end
@@ -958,103 +935,101 @@ function RepentanceBossChampions:GreenGideonAI(npc)
 	local sprite = npc:GetSprite()
 	local target = npc:GetPlayerTarget()
 	local room = game:GetRoom()
-	if npc.Variant == 20 then
-		if room:IsClear() then
-			for _, gideon in pairs(Isaac.FindByType(907,20,1)) do -- remove
-				if gideon:GetSprite():IsPlaying("ClosedEyes") then
-					gideon:ToNPC():Morph(907, 0, 1, -1)
+	if room:IsClear() then
+		for _, gideon in pairs(Isaac.FindByType(907,20,1)) do -- remove
+			if gideon:GetSprite():IsPlaying("ClosedEyes") then
+				gideon:ToNPC():Morph(907, 0, 1, -1)
+			end
+		end
+	end
+	if npc.State == 6 or npc.State == 3 then -- fire barrage attack OR idle
+		for _, fireProj in pairs(Isaac.FindByType(EntityType.ENTITY_PROJECTILE,0,-1)) do -- remove
+			if fireProj.SpawnerType == 907 then
+				local projdata = fireProj:GetData()
+				if not projdata.New == true then
+					fireProj:Remove()
 				end
 			end
 		end
-		if npc.State == 6 or npc.State == 3 then -- fire barrage attack OR idle
-			for _, fireProj in pairs(Isaac.FindByType(EntityType.ENTITY_PROJECTILE,0,-1)) do -- remove
-				if fireProj.SpawnerType == 907 then
-					local projdata = fireProj:GetData()
-					if not projdata.New == true then
-						fireProj:Remove()
-					end
-				end
-			end
-			if sprite:IsPlaying("Attack2Loop") then
-				local proj = Isaac.Spawn(9, 0, 0, Vector(npc.Position.X + math.random(-56,56), npc.Position.Y), Vector(0, 10), npc):ToProjectile()
+		if sprite:IsPlaying("Attack2Loop") then
+			local proj = Isaac.Spawn(9, 0, 0, Vector(npc.Position.X + math.random(-56,56), npc.Position.Y), Vector(0, 10), npc):ToProjectile()
+			local projdata = proj:GetData()
+			proj.FallingAccel = 1.5
+			proj.FallingSpeed = math.random(-56,-1)
+			proj.Scale = RepentanceBossChampions.choose(0.5,0.75,0.1)
+			projdata.New = true
+			projdata.SmallIpecac = true
+			local color = Color(1,1,1,1,0,0,0)
+			color:SetColorize(0,2,0,1)
+			proj.Color = color
+		end
+	end
+	if npc.State == 8 then -- projectile spread attack
+		for _, proj in pairs(Isaac.FindByType(EntityType.ENTITY_PROJECTILE,0,-1)) do -- remove
+			if proj.SpawnerType == 907 then
 				local projdata = proj:GetData()
-				proj.FallingAccel = 1.5
-				proj.FallingSpeed = math.random(-56,-1)
-				proj.Scale = RepentanceBossChampions.choose(0.5,0.75,0.1)
-				projdata.New = true
-				projdata.SmallIpecac = true
-				local color = Color(1,1,1,1,0,0,0)
-				color:SetColorize(0,2,0,1)
-				proj.Color = color
-			end
-		end
-		if npc.State == 8 then -- projectile spread attack
-			for _, proj in pairs(Isaac.FindByType(EntityType.ENTITY_PROJECTILE,0,-1)) do -- remove
-				if proj.SpawnerType == 907 then
-					local projdata = proj:GetData()
-					if not projdata.New == true then
-						proj:Remove()
-					end
+				if not projdata.New == true then
+					proj:Remove()
 				end
 			end
-			if sprite:IsEventTriggered("Shoot") then
-				local velocity = (target.Position - npc.Position):Rotated(math.random(-1, 1)) * 0.025 * 12 * 0.1
-				local length = velocity:Length()
+		end
+		if sprite:IsEventTriggered("Shoot") then
+			local velocity = (target.Position - npc.Position):Rotated(math.random(-1, 1)) * 0.025 * 12 * 0.1
+			local length = velocity:Length()
+			if length > 12 then
+				velocity = (velocity / length) * 12
+			end
+			local proj = Isaac.Spawn(9, 0, 0, npc.Position, velocity, npc):ToProjectile()
+			local projdata = proj:GetData()
+			proj.FallingAccel = 0.8
+			proj.FallingSpeed = math.random(-24, -16)
+			proj.Scale = 2
+			proj.ProjectileFlags = ProjectileFlags.EXPLODE
+			projdata.New = true
+			projdata.GreenCreep = true
+			local color = Color(1,1,1,1,0,0,0)
+			color:SetColorize(0,2,0,1)
+			proj.Color = color
+			data.SmallFallingSpeed = math.random(-24, -16)
+			for i=1, 2 do
+				local smallvelocity = ((target.Position - npc.Position):Rotated(math.random(-1, 1)) * 0.025 * 12 * 0.1):Rotated(-48+i*32)
+				local length = smallvelocity:Length()
 				if length > 12 then
-					velocity = (velocity / length) * 12
+					smallvelocity = (smallvelocity / length) * 12
 				end
-				local proj = Isaac.Spawn(9, 0, 0, npc.Position, velocity, npc):ToProjectile()
-				local projdata = proj:GetData()
-				proj.FallingAccel = 0.8
-				proj.FallingSpeed = math.random(-24, -16)
-				proj.Scale = 2
-				proj.ProjectileFlags = ProjectileFlags.EXPLODE
-				projdata.New = true
-				projdata.GreenCreep = true
-				local color = Color(1,1,1,1,0,0,0)
-				color:SetColorize(0,2,0,1)
-				proj.Color = color
-				data.SmallFallingSpeed = math.random(-24, -16)
-				for i=1, 2 do
-					local smallvelocity = ((target.Position - npc.Position):Rotated(math.random(-1, 1)) * 0.025 * 12 * 0.1):Rotated(-48+i*32)
-					local length = smallvelocity:Length()
-					if length > 12 then
-						smallvelocity = (smallvelocity / length) * 12
-					end
-					local smallproj = Isaac.Spawn(9,0,0, npc.Position,smallvelocity, npc):ToProjectile()
-					local projdata = smallproj:GetData()
-					smallproj.FallingAccel = 0.8
-					smallproj.FallingSpeed = data.SmallFallingSpeed
-					smallproj.Scale = 0.75
-					projdata.New = true
-					projdata.SmallIpecac = true
-					local color = Color(1,1,1,1,0,0,0)
-					color:SetColorize(0,2,0,1)
-					smallproj.Color = color
-				end
-			end
-		end
-		if npc.State == 9 then -- fire barrage prep
-			if sprite:GetFrame() >= 50 then
-				local proj = Isaac.Spawn(9, 0, 0, Vector(npc.Position.X + math.random(-56,56), npc.Position.Y), Vector(0, 10), npc):ToProjectile()
-				local projdata = proj:GetData()
-				proj.FallingAccel = 1.5
-				proj.FallingSpeed = math.random(-64,-4)
-				proj.Scale = RepentanceBossChampions.choose(0.5,0.75,0.1)
+				local smallproj = Isaac.Spawn(9,0,0, npc.Position,smallvelocity, npc):ToProjectile()
+				local projdata = smallproj:GetData()
+				smallproj.FallingAccel = 0.8
+				smallproj.FallingSpeed = data.SmallFallingSpeed
+				smallproj.Scale = 0.75
 				projdata.New = true
 				projdata.SmallIpecac = true
 				local color = Color(1,1,1,1,0,0,0)
 				color:SetColorize(0,2,0,1)
-				proj.Color = color
+				smallproj.Color = color
 			end
 		end
-		if npc.State == 11 then -- suction prep
-			print("Changed state")
-			SFXManager():Stop(SoundEffect.SOUND_MONSTER_ROAR_3)
-			npc:PlaySound(SoundEffect.SOUND_LOW_INHALE , 1, 0, false, 0.9)
-			sprite:Play("Attack1")
-			npc.State = 8
+	end
+	if npc.State == 9 then -- fire barrage prep
+		if sprite:GetFrame() >= 50 then
+			local proj = Isaac.Spawn(9, 0, 0, Vector(npc.Position.X + math.random(-56,56), npc.Position.Y), Vector(0, 10), npc):ToProjectile()
+			local projdata = proj:GetData()
+			proj.FallingAccel = 1.5
+			proj.FallingSpeed = math.random(-64,-4)
+			proj.Scale = RepentanceBossChampions.choose(0.5,0.75,0.1)
+			projdata.New = true
+			projdata.SmallIpecac = true
+			local color = Color(1,1,1,1,0,0,0)
+			color:SetColorize(0,2,0,1)
+			proj.Color = color
 		end
+	end
+	if npc.State == 11 then -- suction prep
+		print("Changed state")
+		SFXManager():Stop(SoundEffect.SOUND_MONSTER_ROAR_3)
+		npc:PlaySound(SoundEffect.SOUND_LOW_INHALE , 1, 0, false, 0.9)
+		sprite:Play("Attack1")
+		npc.State = 8
 	end
 end
 RepentanceBossChampions:AddCallback(ModCallbacks.MC_NPC_UPDATE, RepentanceBossChampions.GreenGideonAI, 907)
@@ -1392,7 +1367,6 @@ end
 
 function RepentanceBossChampions:PurpleWilloAI(npc, dmgAmount, flags, source, frames)
 	local sprite = npc:GetSprite()
-	local subtype = npc.SubType
 	if npc.Variant == 32 then
 		sprite:ReplaceSpritesheet(0, "gfx/monsters/repentance/willo_purple.png")
 		sprite:ReplaceSpritesheet(1, "gfx/monsters/repentance/willo_purple.png")
