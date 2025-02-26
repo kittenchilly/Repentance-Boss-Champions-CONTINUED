@@ -2804,7 +2804,7 @@ function RepentanceBossChampions:RedColostomiaAI(npc)
 		end
 	end
 	if npc.State == NpcState.STATE_ATTACK3 then -- butt bomb attack
-		for _, buttBomb in pairs(Isaac.FindByType(EntityType.ENTITY_BOMB,EntityType.BOMB_BUTT,-1)) do -- remove butt bomb
+		for _, buttBomb in pairs(Isaac.FindByType(EntityType.ENTITY_BOMB, BombVariant.BOMB_BUTT, -1)) do -- remove butt bomb
 			if buttBomb.SpawnerType == EntityType.ENTITY_COLOSTOMIA then
 				buttBomb:Remove()
 			end
